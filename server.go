@@ -34,7 +34,7 @@ var (
 // Config is used to configure the mDNS server
 type Config struct {
 	// Zone must be provided to support responding to queries
-	Zone Zone
+	// Zone Zone
 
 	// For publish multiple MDNSService
 	Zones []Zone
@@ -250,7 +250,7 @@ func (s *Server) handleQuery(query *dns.Msg, from net.Addr) error {
 // The response to a question may be transmitted over multicast, unicast, or
 // both.  The return values are DNS records for each transmission type.
 func (s *Server) handleQuestion(q dns.Question) (multicastRecs, unicastRecs []dns.RR) {
-	records := s.config.Zone.Records(q)
+	// records := s.config.Zone.Records(q)
 
 	for _, zone := range s.config.Zones {
 		records := zone.Records(q)
