@@ -36,6 +36,9 @@ type Config struct {
 	// Zone must be provided to support responding to queries
 	Zone Zone
 
+	// For publish multiple MDNSService
+	Zones []Zone
+	
 	// Iface if provided binds the multicast listener to the given
 	// interface. If not provided, the system default multicase interface
 	// is used.
