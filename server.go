@@ -252,6 +252,10 @@ func (s *Server) handleQuery(query *dns.Msg, from net.Addr) error {
 func (s *Server) handleQuestion(q dns.Question) (multicastRecs, unicastRecs []dns.RR) {
 	records := s.config.Zone.Records(q)
 
+	for _, zone := range s.config.Zones {
+		records := zone.Records(q)
+	}
+
 	if len(records) == 0 {
 		return nil, nil
 	}
