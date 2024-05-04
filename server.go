@@ -37,7 +37,7 @@ type Config struct {
 	// Zone Zone
 
 	// For publish multiple MDNSService
-	Zones []Zone
+	Zones MDNSServices
 	
 	// Iface if provided binds the multicast listener to the given
 	// interface. If not provided, the system default multicase interface
@@ -252,12 +252,12 @@ func (s *Server) handleQuery(query *dns.Msg, from net.Addr) error {
 func (s *Server) handleQuestion(q dns.Question) (multicastRecs, unicastRecs []dns.RR) {
 	// records := s.config.Zone.Records(q)
 
-	records []dns.RR
+	var records []dns.RR
 
 	for _, zone := range s.config.Zones {
 		records := zone.Records(q)
 		if len(records) != 0 {
-			break
+			return records, nil
 		}
 	}
 
