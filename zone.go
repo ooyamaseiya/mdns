@@ -39,6 +39,8 @@ type MDNSService struct {
 	enumAddr     string // _services._dns-sd._udp.<domain>
 }
 
+type MDNSServices []*MDNSService
+
 // validateFQDN returns an error if the passed string is not a fully qualified
 // hdomain name (more specifically, a hostname).
 func validateFQDN(s string) error {
